@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "Pass123*"  # Cambia esto por una contraseña segura
+      ACCEPT_EULA: "Y"  # Acepta el acuerdo de licencia
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - sqlserver_net
+volumes:
+  sqlserver_data:
+
+networks:
+  sqlserver_net:
+    driver: bridge
+
+
