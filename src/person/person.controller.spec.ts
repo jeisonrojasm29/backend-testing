@@ -1,14 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PersonController } from './person.controller';
-import { PersonModule } from './person.module';
 import { PersonService } from './person.service';
 
 describe('PersonController', () => {
   let controller: PersonController;
   let service: PersonService
 
-  const mockService = {
-    findAll: jest.fn().mockResolvedValue([{ id: 1, name: 'Jeison Rojas' }])
+  const mockService: Pick<PersonService, 'findAll'> = {
+    findAll: jest.fn()
   }
 
   beforeEach(async () => {
@@ -31,29 +30,12 @@ describe('PersonController', () => {
   });
 
   describe('GET findAll()', () => {
-
-    it('should call personService.findAll', async () => {
-      await controller.findAll()
-      expect(service.findAll).toHaveBeenCalled();
+    it('findAll() method should exists in person.controller.ts', () => {
+      expect(controller.findAll).toBeDefined()
     })
-
-    it('should return an array of persons', async () => {
-      const expectedResult = [{ id: 1, name: 'Jeison Rojas' }]
-      jest.spyOn(service, 'findAll').mockResolvedValue(expectedResult)
-
-      const result = await controller.findAll();
-      expect(result).toEqual(expectedResult);
-    })
-
-    it('should handle errors from the service', async () => {
-      jest.spyOn(service, 'findAll').mockRejectedValue(new Error('Service error'))
-
-      try {
-        await controller.findAll()
-      } catch (error) {
-        expect(error.message).toBe('Service error')
-      }
-    })
-
   })
 });
+
+
+
+

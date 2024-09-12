@@ -9,8 +9,8 @@ export class PersonService {
     return 'This action adds a new person';
   }
 
-  async findAll(): Promise<Person[]> {
-    return [{ id: 1, name: `Test name` }];
+  async findAll() {
+    return `This action returns all persons`;
   }
 
   findOne(id: number) {
