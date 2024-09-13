@@ -1,11 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, ParseIntPipe } from '@nestjs/common';
 import { PersonService } from './person.service';
 import { CreatePersonDto } from './dto/create-person.dto';
 import { UpdatePersonDto } from './dto/update-person.dto';
 
 @Controller('person')
 export class PersonController {
-  constructor(private readonly personService: PersonService) {}
+  constructor(private readonly personService: PersonService) { }
 
   // @Post()
   // create(@Body() createPersonDto: CreatePersonDto) {
@@ -13,7 +13,10 @@ export class PersonController {
   // }
 
   @Get()
-  findAll() {
+  findAll(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
     return this.personService.findAll();
   }
 
