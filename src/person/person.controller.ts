@@ -14,8 +14,8 @@ export class PersonController {
 
   @Get()
   findAll(
-    // @Query('page') page: number,
-    // @Query('limit') limit: number,
+    @Query('page') page: number,
+    @Query('limit') limit: number,
   ) {
     return this.personService.findAll();
   }
